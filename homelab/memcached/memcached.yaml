@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: memcached
+spec:
+  serviceName: memcached
+  selector:
+    matchLabels:
+      app: memcached
+  replicas: 1
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: memcached
+    spec:
+      containers:
+        - name: memcached
+          image: memcached
+          args:
+            - "-m 72"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "80Mi"
+            limits:
+              cpu: "100m"
+              memory: "80Mi"
+          ports:
+            - containerPort: 11211
+              name: memcached
+      priorityClassName: high-priority
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: memcached
+  name: memcached
+spec:
+  ports:
+    - name: memcached
+      port: 11211
+      protocol: TCP
+      targetPort: 11211
+  selector:
+    app: memcached
+  type: ClusterIP
