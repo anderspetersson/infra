@@ -1,0 +1,28 @@
+logs:
+  general:
+    format: json
+    level: INFO
+  access:
+    enabled: true
+    format: json
+    level: INFO
+    fields:
+      headers:
+        defaultmode: keep
+providers:
+  kubernetesGateway:
+    enabled: true
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: false
+gatewayClass:
+  enabled: true
+ports:
+  web:
+    expose:
+      default: true
+    exposedPort: 80
+    forwardedHeaders:
+      trustedIPs:
+        - "10.42.0.0/16"
