@@ -5,9 +5,26 @@ metadata:
 data:
   postgresql.conf: |
     hba_file = '/config/pg_hba.conf'
+
+    # Since Kubernetes is in charge of assingning ip to pod we dont know the ip before starting.
+    # Listen on all addresses and restrict access in pg_hba.conf.
     listen_addresses = '*'
+
     max_connections = 100
+
+    # Should be set to 1/4 of machine RAM.
     shared_buffers = 512MB
+
+    # work_mem * max_connections should be 1/4 of machine RAM.
+    work_mem = 5MB
+
+    # Should be set to 3/4 of machine RAM.
+    effective_cache_size = 1536MB
+
+    # Improve query planning, default is 4. DB running on SSD disk should be set to 1.1.
+    random_page_cost = 1.1
+
+    checkpoint_timeout = 10min
 
   pg_hba.conf: |
     host    all             all             10.42.0.0/16               md5
