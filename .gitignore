@@ -1,4 +1,5 @@
 .DS_Store
 *.helm-charts
 cloud/.terraform
+cloud/.terraform.lock.hcl
 cloud/terraform.tfvars
