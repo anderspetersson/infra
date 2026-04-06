@@ -2,4 +2,5 @@
 *.helm-charts
 cloud/.terraform
 cloud/.terraform.lock.hcl
+cloud/terraform.tfstate
 cloud/terraform.tfvars
