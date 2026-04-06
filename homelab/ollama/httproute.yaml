@@ -1,0 +1,14 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: ollama
+spec:
+  parentRefs:
+    - kind: Gateway
+      name: traefik-gateway
+  hostnames:
+    - "ollama.mini.local"
+  rules:
+    - backendRefs:
+      - name: ollama
+        port: 11434
