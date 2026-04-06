@@ -47,7 +47,7 @@ spec:
           resources:
             requests:
               cpu: "2000m"
-              memory: "2048Mi"
+              memory: "1000Mi"
           ports:
             - containerPort: 5432
               name: postgres
