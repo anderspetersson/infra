@@ -31,7 +31,7 @@ spec:
             claimName: pvc-ollama
       containers:
       - name: ollama
-        image: ollama/ollama:0.23.2
+        image: ollama/ollama:0.24.0
         resources:
           limits:
             cpu: "6000m"
